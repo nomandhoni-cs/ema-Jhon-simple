@@ -1,5 +1,9 @@
 .product-container{
     display: flex;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 .product-image{
     margin: 10px;
@@ -9,7 +13,24 @@
     margin: 10px;
     display: inline-block;
 }
+.product-info h4{
+    color: blue;
+    font-weight: 400;
+}
 .product-image img{
     height: 200px;
     width: 200px;
+}
+.order-info{
+    display: flex;
+}
+.review{
+    width: 45%;
+}
+.items-left{
+    width: 45%;
+}
+.items-left p{
+    line-height: 0;
+    margin-top: 10px;
 }
