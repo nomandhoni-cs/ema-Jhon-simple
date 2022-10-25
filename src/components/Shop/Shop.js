@@ -8,14 +8,12 @@ const Shop = () => {
   const [products, setProducts] = useState(firstItems);
   // Setting cart state
   const [cart, setCart] = useState([]);
-  //Price State
-  const [price, setPrice] = useState(0);
   // Handle Add cart function
   const handleAddCart = (product) => {
-    const newCart = [...cart, products];
+    const newCart = [...cart, product];
     setCart(newCart);
     console.log("Product added", product);
-    setPrice((product.price) + price);
+    // setPrice((product.price) + price);
   };
   return (
     <div className="shop-container">
@@ -25,7 +23,7 @@ const Shop = () => {
         ))}
       </div>
       <div className="cart-container">
-          <Cart price={price} items={cart.length}></Cart>
+          <Cart cart={cart}></Cart>
       </div>
     </div>
   );
