@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Cart.css"
 const Cart = (props) => {
   const productInCart = props.cart;
   console.log(productInCart);
@@ -31,15 +31,16 @@ const Cart = (props) => {
     return Number(precision);
   };
   return (
-    <div>
-      <h3>
+    <div className="cart-container">
+      <h3 className="summary">
         <u>Order Summary</u>
       </h3>
-      <p>Items ordered: {productInCart.length}</p>
-      <p>Price price: ${digitPrecision(productPrice)}</p>
-      <p>Shipping cost: ${digitPrecision(shippingCost)}</p>
-      <p>Tax: ${digitPrecision(tax)}</p>
-      <h3>Total Amount: ${digitPrecision(grandTotalPrice)}</h3>
+      <p className="summary">Items ordered: <span className="money">{productInCart.length}</span></p>
+      <p>Price price: <span className="money">${digitPrecision(productPrice)}</span> </p>
+      <p>Shipping cost: <span className="money">${digitPrecision(shippingCost)}</span> </p>
+      <p>Tax: <span className="money">${digitPrecision(tax)}</span> </p>
+      <h3 className="grandTotal">Order total: <span className="money"> ${digitPrecision(grandTotalPrice)}</span> </h3>
+      <button className="yellowBtn">Review Order</button>
     </div>
   );
 };

@@ -1,0 +1,14 @@
+.cart-container{
+    margin: 0 auto;
+}
+.cart-container .money{
+    /* text-align: right; */
+    /* display: inline-block; */
+    float: right;
+}
+.cart-container .summary{
+    text-align: center;
+}
+.grandTotal{
+    color: red;
+}
