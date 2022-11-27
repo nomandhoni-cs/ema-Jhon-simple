@@ -2,7 +2,7 @@ import React from "react";
 import "./Cart.css"
 const Cart = (props) => {
   const productInCart = props.cart;
-  console.log(productInCart);
+  // console.log(productInCart);
   //! [This is another way of doing array reduce] !//
   // let productPrice = 0;
   // for (let i = 0; i < productInCart.length; i++) {
@@ -10,7 +10,7 @@ const Cart = (props) => {
   //   productPrice = productPrice + product.price;
   // }
   const productPrice = productInCart.reduce(
-    (total, pdr) => total + pdr.price,
+    (total, product) => total + product.price * product.quantity,
     0
   );
   const tax = productPrice / 10;
@@ -40,7 +40,9 @@ const Cart = (props) => {
       <p>Shipping cost: <span className="money">${digitPrecision(shippingCost)}</span> </p>
       <p>Tax: <span className="money">${digitPrecision(tax)}</span> </p>
       <h3 className="grandTotal">Order total: <span className="money"> ${digitPrecision(grandTotalPrice)}</span> </h3>
-      <button className="yellowBtn">Review Order</button>
+      {
+        props.children
+      }
     </div>
   );
 };
