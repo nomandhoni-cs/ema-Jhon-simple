@@ -4,6 +4,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase.config";
 import { initializeApp } from "firebase/app";
 import { UserContext } from '../../App';
+import { useLocation, useNavigate } from 'react-router-dom';
 initializeApp(firebaseConfig);
 const Login = () => {
   //Checkbox for new user
@@ -11,6 +12,11 @@ const Login = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   const [user, setUser] = useContext(UserContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  if(location.state?.from){
+    navigate(location.state.from)
+}
   // Sign in with google popup
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -18,8 +24,14 @@ const Login = () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        const loggedInUser = { isSignedIn: true, name: user.displayName, email: user.email, photo: user.photoURL, token: token };
-        setUser(loggedInUser);
+        const signedInUser = {
+          isSignedIn: true,
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+          token: user.accessToken
+        };
+        setUser(signedInUser);
         console.log(user);
       }).catch((error) => {
         const errorCode = error.code;

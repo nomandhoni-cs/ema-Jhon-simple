@@ -9,9 +9,16 @@ import fakeData from "../../fakeData/index.js";
 import Cart from "../Cart/Cart";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import HappyImage from "../../images/giphy.gif";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../App";
+import userEvent from "@testing-library/user-event";
 const Review = () => {
   const [cart, setCart] = useState([]);
   const [placeOrder, setPlaceOrder] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [user, setUser] = useContext(UserContext);
 
   // Data loading from local Storage
   useEffect(() => {
@@ -29,11 +36,20 @@ const Review = () => {
   }, []);
   // console.log(cart);
   // Handle Place Order
-  const handlePlaceOrder = () => {
-    setPlaceOrder(true);
-    console.log("Order Placed");
-    processOrder();
-    setCart([]);
+  const handleProceedCheckout = (e) => {
+    // if(location.state?.from){
+    //   navigate(location.state.pathname);
+    // }
+    // if(user.isSignedIn){
+    //   navigate('/shipment');
+    // }
+    console.log(location);
+    // setPlaceOrder(true);
+    // console.log("Order Placed", location.pathname);
+    // processOrder();
+    // setCart([]);
+    // Pevent Default
+    //  e.preventDefault();
   };
 
   // Remove item from review section function
@@ -60,9 +76,9 @@ const Review = () => {
       </div>
       <div className="cart-container">
         <Cart cart={cart}>
-            <button className="yellowBtn" onClick={handlePlaceOrder}>
-              Place Order
-            </button>
+        <Link to="/shipment">
+          <button onClick={handleProceedCheckout} className="yellowBtn">Proceed Checkout</button>
+        </Link>
         </Cart>
       </div>
     </div>
